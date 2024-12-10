@@ -3,8 +3,10 @@
 
 import { sql } from "drizzle-orm";
 import {
+  pgTable,
   index,
   pgTableCreator,
+  text,
   serial,
   timestamp,
   varchar,
@@ -30,5 +32,11 @@ export const posts = createTable(
   },
   (example) => ({
     nameIndex: index("name_idx").on(example.name),
-  })
+  }),
 );
+
+export const users = createTable("users", {
+  id: serial("id").primaryKey(),
+  fullName: text("full_name"),
+  phone: varchar("phone", { length: 256 }),
+});
