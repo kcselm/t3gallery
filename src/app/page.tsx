@@ -1,6 +1,6 @@
 import { imageConfigDefault } from "next/dist/shared/lib/image-config";
 import Link from "next/link";
-import TopNav from "./components/TopNav";
+import TopNav from "./_components/TopNav";
 import { db } from "~/server/db";
 
 export const dynamic = "force-dynamic";
