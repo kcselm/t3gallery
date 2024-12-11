@@ -3,10 +3,7 @@
 
 import { sql } from "drizzle-orm";
 import {
-  pgTable,
-  index,
   pgTableCreator,
-  text,
   serial,
   timestamp,
   varchar,
@@ -20,23 +17,12 @@ import {
  */
 export const createTable = pgTableCreator((name) => `t3gallery_${name}`);
 
-export const posts = createTable(
-  "post",
-  {
-    id: serial("id").primaryKey(),
-    name: varchar("name", { length: 256 }),
-    createdAt: timestamp("created_at")
-      .default(sql`CURRENT_TIMESTAMP`)
-      .notNull(),
-    updatedAt: timestamp("updatedAt"),
-  },
-  (example) => ({
-    nameIndex: index("name_idx").on(example.name),
-  }),
-);
-
-export const users = createTable("users", {
+export const images = createTable("image", {
   id: serial("id").primaryKey(),
-  fullName: text("full_name"),
-  phone: varchar("phone", { length: 256 }),
+  name: varchar("name", { length: 256 }).notNull(),
+  url: varchar("url", { length: 256 }).notNull(),
+  createdAt: timestamp("created_at")
+    .default(sql`CURRENT_TIMESTAMP`)
+    .notNull(),
+  updatedAt: timestamp("updatedAt"),
 });
